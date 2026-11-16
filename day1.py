@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # name = "satyam"
 # age  =89
 # marks = 90
@@ -49,7 +49,6 @@
 # git commit -m "first commit"
 # git branch -M main
 # git remote add origin https://github.com/satyammishra8-1/Python-traning.git
-=======
 # name = "satyam"
 # age  =89
 # marks = 90
@@ -94,11 +93,3 @@
 #     print("you waste fellow 😡")
 
 
-# echo "# Python-traning" >> README.md
-# git init
-# git add README.md
-# git commit -m "first commit"
-# git branch -M main
-# git remote add origin https://github.com/satyammishra8-1/Python-traning.git
->>>>>>> 306dce1d2f869b9b5868c62f69eafed5d78d489e
-# git push -u origin main
