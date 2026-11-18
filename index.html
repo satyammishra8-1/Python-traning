@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Do You Like Me?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            height: 100vh;
+            height: 100dvh; /* Adapts to mobile browser address bars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fad0c4 100%);
+            overflow: hidden;
+            position: relative;
+            padding: 16px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: clamp(28px, 6vw, 45px) clamp(20px, 6vw, 60px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.25);
+            text-align: center;
+            z-index: 10;
+            max-width: 420px;
+            width: 100%;
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            color: #d6336c;
+            font-size: clamp(1.6rem, 6vw, 2.2rem);
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+            margin-bottom: 26px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            min-height: 52px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: clamp(1rem, 4vw, 1.1rem);
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            touch-action: manipulation;
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            color: white;
+            box-shadow: 0 6px 18px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover, #yesBtn:active {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(255, 77, 109, 0.6);
+        }
+
+        #noBtn {
+            background-color: #f1f3f5;
+            color: #495057;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 25;
+            transition: left 0.18s ease-out, top 0.18s ease-out;
+        }
+
+        .emoji {
+            position: fixed;
+            bottom: -50px;
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 3.5s ease-in forwards;
+            z-index: 30;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.4) rotate(25deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1 id="question">Do you like me? 💖</h1>
+        <p id="subtext">Be honest... I promise I won't bite! 😊</p>
+        <div class="btn-group">
+            <button id="yesBtn">Yes 😍</button>
+            <button id="noBtn">No 🙈</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const question = document.getElementById('question');
+        const subtext = document.getElementById('subtext');
+
+        const romanticEmojis = ['❤️', '💖', '🥰', '😍', '💕', '🌹', '✨', '💘', '💓'];
+        let isFloating = false;
+        let currentX = 0;
+        let currentY = 0;
+
+        function moveAwayFromPointer(pointerX, pointerY, forceMove = false) {
+            const rect = noBtn.getBoundingClientRect();
+            const btnCenterX = rect.left + rect.width / 2;
+            const btnCenterY = rect.top + rect.height / 2;
+
+            let deltaX = btnCenterX - pointerX;
+            let deltaY = btnCenterY - pointerY;
+            const distance = Math.hypot(deltaX, deltaY);
+
+            // Smaller trigger radius on narrow phone screens
+            const triggerRadius = window.innerWidth < 500 ? 75 : 85;
+
+            if (forceMove || distance < triggerRadius) {
+                if (!isFloating) {
+                    currentX = rect.left;
+                    currentY = rect.top;
+                    document.body.appendChild(noBtn);
+                    noBtn.style.position = 'fixed';
+                    noBtn.style.left = currentX + 'px';
+                    noBtn.style.top = currentY + 'px';
+                    isFloating = true;
+                }
+
+                // If tapped directly on center, pick a random escape angle
+                const angle = (deltaX === 0 && deltaY === 0)
+                    ? Math.random() * Math.PI * 2
+                    : Math.atan2(deltaY, deltaX);
+
+                const pushDistance = window.innerWidth < 500 ? 70 : 75;
+                let newX = currentX + Math.cos(angle) * pushDistance;
+                let newY = currentY + Math.sin(angle) * pushDistance;
+
+                const padding = 16;
+                const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+                const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+                // Sidestep inward if cornered near any screen edge
+                if (newX < padding) newX = padding + 65;
+                if (newX > maxX) newX = maxX - 65;
+                if (newY < padding) newY = padding + 65;
+                if (newY > maxY) newY = maxY - 65;
+
+                // Hard clamp inside visible screen
+                currentX = Math.max(padding, Math.min(maxX, newX));
+                currentY = Math.max(padding, Math.min(maxY, newY));
+
+                noBtn.style.left = currentX + 'px';
+                noBtn.style.top = currentY + 'px';
+            }
+        }
+
+        // Desktop cursor movement
+        document.addEventListener('mousemove', (e) => {
+            if (noBtn.style.display !== 'none') {
+                moveAwayFromPointer(e.clientX, e.clientY);
+            }
+        });
+
+        // Smartphone finger drag near the button
+        document.addEventListener('touchmove', (e) => {
+            if (noBtn.style.display !== 'none' && e.touches.length > 0) {
+                const touch = e.touches[0];
+                moveAwayFromPointer(touch.clientX, touch.clientY);
+            }
+        }, { passive: true });
+
+        // Smartphone direct tap on the "No" button
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevents accidental click on mobile
+            const touch = e.touches[0];
+            moveAwayFromPointer(touch.clientX, touch.clientY, true);
+        }, { passive: false });
+
+        // Keep inside viewport on orientation change / resize
+        window.addEventListener('resize', () => {
+            if (isFloating) {
+                const padding = 16;
+                const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+                const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+                currentX = Math.max(padding, Math.min(maxX, currentX));
+                currentY = Math.max(padding, Math.min(maxY, currentY));
+                noBtn.style.left = currentX + 'px';
+                noBtn.style.top = currentY + 'px';
+            }
+        });
+
+        // Spawn floating romantic emojis when "Yes" is tapped/clicked
+        yesBtn.addEventListener('click', () => {
+            question.innerText = "Yay!! I like you too! 🥰❤️";
+            subtext.innerText = "You just made my day! ✨";
+            noBtn.style.display = 'none';
+
+            for (let i = 0; i < 35; i++) {
+                setTimeout(createEmoji, i * 100);
+            }
+        });
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = romanticEmojis[Math.floor(Math.random() * romanticEmojis.length)];
+            emoji.style.left = Math.random() * 90 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            document.body.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.remove();
+            }, 4500);
+        }
+    </script>
+
+</body>
+</html>
