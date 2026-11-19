@@ -1,0 +1,142 @@
+-- 1. Create College Table
+CREATE TABLE college (
+    college_id SERIAL PRIMARY KEY,
+    college_name VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    established_year INT
+);
+
+-- 2. Create Student Table
+CREATE TABLE student (
+    student_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    age INT CHECK (age >= 16),
+    major VARCHAR(50),
+    college_id INT REFERENCES college(college_id) ON DELETE SET NULL
+);
+
+-- 3. Create Employee Table
+CREATE TABLE employee (
+    emp_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    designation VARCHAR(50) NOT NULL,
+    salary NUMERIC(10, 2) NOT NULL,
+    hire_date DATE DEFAULT CURRENT_DATE,
+    college_id INT REFERENCES college(college_id) ON DELETE CASCADE
+);
+
+-- 4. Insert Values into College
+INSERT INTO college (college_name, city, established_year) VALUES
+('National Institute of Technology', 'Bengaluru', 1960),
+('Indian Institute of Science', 'Bengaluru', 1909),
+('Delhi Technological University', 'New Delhi', 1941);
+
+-- 5. Insert Values into Student
+INSERT INTO student (first_name, last_name, email, age, major, college_id) VALUES
+('Aarav', 'Sharma', 'aarav.sharma@example.com', 20, 'Computer Science', 1),
+('Priya', 'Patel', 'priya.patel@example.com', 21, 'Data Science', 2),
+('Rohan', 'Verma', 'rohan.verma@example.com', 19, 'Electronics', 1),
+('Ananya', 'Nair', 'ananya.nair@example.com', 22, 'Mechanical Engineering', 3);
+
+-- 6. Insert Values into Employee
+INSERT INTO employee (full_name, designation, salary, hire_date, college_id) VALUES
+('Dr. Rajesh Kumar', 'Professor', 120000.00, '2018-07-15', 1),
+('Meera Krishnan', 'Lab Assistant', 45000.00, '2021-01-10', 1),
+('Dr. Vikram Desai', 'Dean', 180000.00, '2015-03-22', 2),
+('Sunita Rao', 'Admin Officer', 60000.00, '2020-09-01', 3);
+
+-- 7. Verify Data
+SELECT * FROM college;
+SELECT * FROM student;
+SELECT * FROM employee;
+
+-- ==========================================
+-- 1. SELECTING DATA (Basic, Filtering, Joins)
+-- ==========================================
+
+-- Select all columns from a table
+SELECT * FROM student;
+
+-- Select specific columns
+SELECT first_name, major, age FROM student;
+
+-- Select with a WHERE filter
+SELECT full_name, designation, salary 
+FROM employee 
+WHERE salary > 50000;
+
+-- Select using LIKE (pattern matching)
+SELECT * FROM student 
+WHERE email LIKE '%@example.com';
+
+-- Select with INNER JOIN (combine student and college names)
+SELECT s.first_name, s.last_name, s.major, c.college_name, c.city
+FROM student s
+INNER JOIN college c ON s.college_id = c.college_id;
+
+
+-- ==========================================
+-- 2. ORDER BY (Sorting Results)
+-- ==========================================
+
+-- Sort students by age (Ascending - youngest first)
+SELECT first_name, age 
+FROM student 
+ORDER BY age ASC;
+
+-- Sort employees by salary (Descending - highest paid first)
+SELECT full_name, designation, salary 
+FROM employee 
+ORDER BY salary DESC;
+
+-- Sort by multiple columns (first by city A-Z, then by established year newest-oldest)
+SELECT college_name, city, established_year 
+FROM college 
+ORDER BY city ASC, established_year DESC;
+
+-- Combine WHERE, ORDER BY, and LIMIT (Top 2 highest-paid employees)
+SELECT full_name, salary 
+FROM employee 
+WHERE designation != 'Admin Officer'
+ORDER BY salary DESC 
+LIMIT 2;
+
+
+-- ==========================================
+-- 3. DELETING DATA (Rows Only - Keeps Table)
+-- ==========================================
+
+-- Delete a specific student by ID
+DELETE FROM student 
+WHERE student_id = 4;
+
+-- Delete employees earning less than 50,000
+DELETE FROM employee 
+WHERE salary < 50000;
+
+-- Delete a college (Note: Because student uses ON DELETE SET NULL, 
+-- students in college 3 get NULL college_id; employees get deleted due to ON DELETE CASCADE)
+DELETE FROM college 
+WHERE college_id = 3;
+
+-- Delete ALL rows from a table without deleting the table structure itself
+-- (Commented out so you don't wipe your data accidentally)
+-- DELETE FROM student;
+-- TRUNCATE TABLE student RESTART IDENTITY; -- Faster way to wipe rows and reset IDs to 1
+
+
+-- ==========================================
+-- 4. DROPPING TABLES (Deletes Structure + Data)
+-- ==========================================
+
+-- Drop child tables first (tables that hold foreign keys)
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS employee;
+
+-- Drop parent table last
+DROP TABLE IF EXISTS college;
+
+-- Alternative: Drop parent table immediately along with dependent foreign keys
+-- DROP TABLE IF EXISTS college CASCADE;
