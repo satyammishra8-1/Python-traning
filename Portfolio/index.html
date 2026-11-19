@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satyam Mishra | CSE Undergraduate & Software Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for clean icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#home" class="logo">&lt;Sattu<span>/&gt;</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button id="menuToggle" class="menu-btn" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="greeting">Hi, my name is</p>
+        <h1>Satyam Mishra.</h1>
+        <h2 class="typing-wrapper">I build <span id="typedText"></span><span class="cursor">|</span></h2>
+        <p class="hero-bio">
+          I'm a 3rd-year Computer Science & Engineering (CSE) undergraduate passionate about building full-stack web applications, real-time collaborative tools, and intelligent AI agents.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">Explore My Work</a>
+          <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <i class="fab fa-github"></i> GitHub Profile
+          </a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="code-window">
+          <div class="window-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="file-name">satyam.config.js</span>
+          </div>
+          <pre class="code-body"><code><span class="kw">const</span> developer = {
+  name: <span class="str">"Satyam Mishra"</span>,
+  education: <span class="str">"B.Tech CSE (3rd Year)"</span>,
+  focus: [
+    <span class="str">"Full-Stack Development"</span>,
+    <span class="str">"AI Agents & LLMs"</span>,
+    <span class="str">"Real-Time Systems"</span>
+  ],
+  github: <span class="str">"satymmishra8-1"</span>,
+  openToOpportunities: <span class="bool">true</span>
+};</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title"><span>01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hello! I'm <strong>Satyam Mishra</strong>, currently pursuing my Bachelor's degree in <strong>Computer Science and Engineering (3rd Year)</strong>. My journey in tech is driven by curiosity—turning complex problems into clean, scalable, and user-centric software.
+          </p>
+          <p>
+            Over the past couple of years, I have focused heavily on modern web architectures, cloud databases, and practical Generative AI workflows. Whether it's engineering real-time messaging platforms, collaborative workspaces, or autonomous job-hunting agents, I enjoy working across the entire stack.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-box">
+              <h3>3rd Year</h3>
+              <p>B.Tech in CSE</p>
+            </div>
+            <div class="highlight-box">
+              <h3>5+</h3>
+              <p>Featured Projects</p>
+            </div>
+            <div class="highlight-box">
+              <h3>Certified</h3>
+              <p>Coursera & NPTEL</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title"><span>02.</span> Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Languages</h3>
+          <div class="tags">
+            <span>C++</span>
+            <span>Python</span>
+            <span>JavaScript (ES6+)</span>
+            <span>TypeScript</span>
+            <span>SQL</span>
+            <span>HTML5 / CSS3</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-layer-group"></i> Frontend & Backend</h3>
+          <div class="tags">
+            <span>React.js</span>
+            <span>Node.js</span>
+            <span>Express.js</span>
+            <span>Next.js</span>
+            <span>Tailwind CSS</span>
+            <span>REST APIs & WebSockets</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-brain"></i> AI, Cloud & Databases</h3>
+          <div class="tags">
+            <span>LangChain / LLM Agents</span>
+            <span>MongoDB Atlas</span>
+            <span>PostgreSQL / MySQL</span>
+            <span>Git & GitHub</span>
+            <span>Docker</span>
+            <span>Vertex AI</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-book"></i> Core CSE Fundamentals</h3>
+          <div class="tags">
+            <span>Data Structures & Algorithms</span>
+            <span>DBMS</span>
+            <span>Operating Systems</span>
+            <span>Computer Networks</span>
+            <span>OOPs</span>
+            <span>Cryptography Basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title"><span>03.</span> Featured Projects</h2>
+      
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ai">AI & Agents</button>
+        <button class="filter-btn" data-filter="fullstack">Full-Stack & Real-Time</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Quick Chat -->
+        <article class="project-card" data-category="fullstack">
+          <div class="project-top">
+            <i class="far fa-folder-open folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3>Quick Chat</h3>
+          <p>
+            A real-time messaging application featuring instant bi-directional communication, user authentication with email verification, online status tracking, and a responsive UI across devices.
+          </p>
+          <ul class="tech-list">
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Socket.io</li>
+            <li>MongoDB</li>
+          </ul>
+        </article>
+
+        <!-- Project 2: SyncSpace -->
+        <article class="project-card" data-category="fullstack">
+          <div class="project-top">
+            <i class="far fa-folder-open folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3>SyncSpace</h3>
+          <p>
+            A collaborative workspace platform designed for seamless team coordination, real-time document/task syncing, and cloud-backed data persistence using MongoDB Atlas.
+          </p>
+          <ul class="tech-list">
+            <li>Full-Stack JS</li>
+            <li>MongoDB Atlas</li>
+            <li>REST API</li>
+            <li>Real-Time Sync</li>
+          </ul>
+        </article>
+
+        <!-- Project 3: Forma AI -->
+        <article class="project-card" data-category="ai">
+          <div class="project-top">
+            <i class="far fa-folder-open folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3>Forma AI</h3>
+          <p>
+            An AI-powered intelligent assistant and content/form structuring tool that leverages large language models to automate data extraction, formatting, and smart user workflows.
+          </p>
+          <ul class="tech-list">
+            <li>Python</li>
+            <li>LLMs</li>
+            <li>React</li>
+            <li>Prompt Engineering</li>
+          </ul>
+        </article>
+
+        <!-- Project 4: AI Job Agent -->
+        <article class="project-card" data-category="ai">
+          <div class="project-top">
+            <i class="far fa-folder-open folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3>AI Job Agent</h3>
+          <p>
+            An autonomous AI agent workflow that searches live job postings, analyzes role requirements against user resumes, and generates tailored outreach and application insights.
+          </p>
+          <ul class="tech-list">
+            <li>LangChain</li>
+            <li>Python</li>
+            <li>Search APIs</li>
+            <li>AI Agents</li>
+          </ul>
+        </article>
+
+        <!-- Project 5: ScoreFlow -->
+        <article class="project-card" data-category="fullstack">
+          <div class="project-top">
+            <i class="far fa-folder-open folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/satymmishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3>ScoreFlow</h3>
+          <p>
+            A dynamic score tracking and analytics application built with role-based access control, secure database management, and real-time leaderboard updates.
+          </p>
+          <ul class="tech-list">
+            <li>MongoDB Atlas</li>
+            <li>Express</li>
+            <li>React</li>
+            <li>Node.js</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Education Section -->
+  <section id="certifications" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title"><span>04.</span> Education & Certifications</h2>
+      <div class="edu-cert-grid">
+        <!-- Education Card -->
+        <div class="info-card">
+          <div class="card-badge">Education</div>
+          <h3>B.Tech in Computer Science & Engineering</h3>
+          <p class="subtitle">3rd Year Undergraduate</p>
+          <p class="desc">
+            Focusing on Data Structures, Algorithms, Database Management Systems (DBMS), Operating Systems, and Software Engineering while building practical full-stack and AI projects.
+          </p>
+        </div>
+
+        <!-- Coursera Card -->
+        <div class="info-card">
+          <div class="card-badge">Certification</div>
+          <h3>Coursera Verified Certifications</h3>
+          <p class="subtitle">Online Specialization & Technical Coursework</p>
+          <p class="desc">
+            Completed industry-aligned coursework covering software development practices, cloud fundamentals, and modern programming methodologies with hands-on graded labs.
+          </p>
+        </div>
+
+        <!-- NPTEL Card -->
+        <div class="info-card">
+          <div class="card-badge">Certification</div>
+          <h3>NPTEL Certified</h3>
+          <p class="subtitle">National Programme on Technology Enhanced Learning (IITs)</p>
+          <p class="desc">
+            Successfully completed proctored certification coursework strengthening core computer science theory, problem-solving, and analytical programming skills.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container contact-wrapper">
+      <p class="contact-overline"><span>05.</span> What's Next?</p>
+      <h2 class="contact-title">Get In Touch</h2>
+      <p class="contact-desc">
+        I'm currently looking for software engineering internships, hackathon collaborations, and exciting open-source or AI projects. Whether you have a question or just want to say hi, my inbox is always open!
+      </p>
+
+      <div class="contact-actions">
+        <a href="mailto:satmis2024@gmail.com" class="btn btn-primary">
+          <i class="fas fa-envelope"></i> Say Hello
+        </a>
+        <button id="copyEmailBtn" class="btn btn-outline" data-email="satmis2024@gmail.com">
+          <i class="far fa-copy"></i> <span id="copyBtnText">satmis2024@gmail.com</span>
+        </button>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/satyammishra8-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:satmis2024@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Designed & Built by <strong>Satyam Mishra</strong> &copy; <span id="year"></span></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
